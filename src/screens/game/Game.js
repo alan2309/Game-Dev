@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import back from "./image5.png";
 import back2 from "./image3.png";
 import boy from "./boy.png";
 import vendor from "./vendor.png";
+import Basket from "../Basket";
+import { Row, Col } from "react-bootstrap";
+import cauli from "./cauli.png";
+import carrot from "./carrot.png";
+import potato from "./potato.png";
+import finger from "./finger.png";
 
 function Game() {
+  const [list, setList] = useState([
+    { id: 1, name: "cauliflower", item: cauli },
+    { id: 2, name: "lady finger", item: finger },
+    { id: 3, name: "potato", item: potato },
+    { id: 4, name: "carror", item: carrot },
+  ]);
+  const ShopCard = ({ img, name }) => {
+    return (
+      <div className="mb-4 mx-1" style={{ backgroundColor: "White" }}>
+        <img
+          style={{ height: "20vh", width: "18.5vw" }}
+          src={img}
+          alt="shop"
+        ></img>
+        <div
+          className="d-flex justify-content-center"
+          style={{ backgroundColor: "#FFC953" }}
+        >
+          {name}
+        </div>
+      </div>
+    );
+  };
   return (
     <div>
       <img
@@ -55,30 +84,6 @@ function Game() {
       ></img>
       <div
         style={{
-          height: "80vh",
-          backgroundColor: "white",
-          position: "absolute",
-          width: "18vw",
-          top: "70px",
-          right: "10px",
-          borderRadius: "10px",
-        }}
-      >
-        <div
-          style={{
-            borderRadius: "10px",
-            backgroundColor: "#eeeeee",
-            borderBottom: "5px solid #cccccc",
-          }}
-        >
-          <h3 className="d-flex justify-content-center pt-2">Basket</h3>
-        </div>
-        <button style={{ position: "absolute", bottom: "30px", right: "35%" }}>
-          submit
-        </button>
-      </div>
-      <div
-        style={{
           backgroundColor: "white",
           width: "57%",
           height: "15vh",
@@ -91,6 +96,27 @@ function Game() {
       >
         <p style={{ fontSize: "24px" }}>question</p>
       </div>
+      <div
+        style={{
+          backgroundColor: "transparent",
+          height: "40vh",
+          width: "40vw",
+          position: "absolute",
+          top: "38%",
+          left: "18%",
+        }}
+      >
+        <Row>
+          {list.map((item, index) => {
+            return (
+              <Col md={6}>
+                <ShopCard img={item.item} name={item.name} />
+              </Col>
+            );
+          })}
+        </Row>
+      </div>
+      <Basket />
     </div>
   );
 }

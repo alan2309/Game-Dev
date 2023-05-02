@@ -1,11 +1,15 @@
-// import Game from "./screens/game/Game";
+import Game from "./screens/game/Game";
 
-import Start from "./screens/game/Start";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+// import Start from "./screens/game/Start";
 
 function App() {
   return (
     <div className="App">
-     <Start />
+    <DndProvider backend={HTML5Backend}>
+     <Game />
+     </DndProvider>
     </div>
   );
 }

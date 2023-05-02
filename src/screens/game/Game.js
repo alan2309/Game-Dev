@@ -10,20 +10,32 @@ import carrot from "./carrot.png";
 import potato from "./potato.png";
 import finger from "./finger.png";
 
+import { useDrag } from 'react-dnd'
 function Game() {
+
   const [list, setList] = useState([
     { id: 1, name: "cauliflower", item: cauli },
     { id: 2, name: "lady finger", item: finger },
     { id: 3, name: "potato", item: potato },
     { id: 4, name: "carror", item: carrot },
   ]);
-  const ShopCard = ({ img, name }) => {
+  const ShopCard = ({ img, name, id }) => {
+    const [{ isDragging }, dragRef] = useDrag({
+      type: 'pet',
+      item: { id, name, img },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging()
+      })
+    })
     return (
-      <div className="mb-4 mx-1" style={{ backgroundColor: "White" }}>
+
+      <div className="mb-4 mx-1" style={{ backgroundColor: "White" }} ref={dragRef}>
+        {console.log(isDragging)}
         <img
           style={{ height: "20vh", width: "18.5vw" }}
           src={img}
           alt="shop"
+
         ></img>
         <div
           className="d-flex justify-content-center"
@@ -35,7 +47,9 @@ function Game() {
     );
   };
   return (
+
     <div>
+
       <img
         className=""
         style={{
@@ -96,6 +110,7 @@ function Game() {
       >
         <p style={{ fontSize: "24px" }}>question</p>
       </div>
+
       <div
         style={{
           backgroundColor: "transparent",
@@ -109,14 +124,17 @@ function Game() {
         <Row>
           {list.map((item, index) => {
             return (
-              <Col md={6}>
-                <ShopCard img={item.item} name={item.name} />
+              <Col md={6}  >
+                <ShopCard img={item.item} name={item.name} draggable id={item.id} />
               </Col>
             );
           })}
         </Row>
       </div>
+
       <Basket />
+
+
     </div>
   );
 }

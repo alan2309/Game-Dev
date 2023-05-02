@@ -1,9 +1,11 @@
-import Game from "./screens/game/Game";
+// import Game from "./screens/game/Game";
+
+import Start from "./screens/game/Start";
 
 function App() {
   return (
     <div className="App">
-     <Game/>
+     <Start />
     </div>
   );
 }

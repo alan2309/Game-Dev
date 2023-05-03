@@ -1,5 +1,6 @@
 import Game from "./screens/game/Game";
 import Task from "./screens/game/Task";
+import { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Market from "./screens/market/Market";
@@ -12,9 +13,22 @@ import {
   Routes,
 } from "react-router-dom";
 import Ice from "./screens/icecream/Ice.js";
+
 import Level from "./screens/game/Levels";
 
+import Fruits from "./screens/Fruits";
+import Grocery from "./screens/Grocery";
+import levelData from "./levelData.json";
+import Final from "./screens/Final";
+
+
 function App() {
+  const [question, setQuestion] = useState(0);
+  const [level, setLevel] = useState(0);
+
+  const nextQuestion = () => {
+    setQuestion(question + 1);
+  };
   let routes = [
     {
       route: "/start",
@@ -22,31 +36,68 @@ function App() {
     },
     {
       route: "/shop",
-      component: <Market />,
+      component: (
+        <Market
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
     },
     {
-      route: "/shop/veggie",
-      component: <Game />,
+      route: "/shop/0",
+      component: (
+        <Game
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
     },
     {
-      route: "/shop/fruits",
-      component: <Game />,
+      route: "/shop/1",
+      component: (
+        <Fruits
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
     },
     {
-      route: "/shop/grocery",
-      component: <Game />,
+      route: "/shop/2",
+      component: (
+        <Grocery
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
     },
     {
-      route: "/shop/icecream",
-      component: <Ice />,
+      route: "/shop/3",
+      component: (
+        <Ice
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
     },
-    {
-      route: "/task",
-      component: <Task />,},
     {
       route: "/level",
       component: <Level />,
     },
+
+      {
+        route:"/task",
+        component: <Task level={levelData[level]}
+      question={question}
+      nextQuestion={nextQuestion} />,},
+    {
+      route:"/end",
+      component:<Final/>,
+    }
   ];
   return (
     <div className="App">

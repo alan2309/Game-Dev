@@ -25,7 +25,7 @@ const BackgroundImg = styled.img`
 const MomImg = styled.img`
   zindex: 2;
   position: absolute;
-  height: 80vh;
+  height: 79vh;
   right: 0%;
   margin-top: 9.8%;
 `;
@@ -44,7 +44,7 @@ const Container = styled.div``;
 const BoyImg = styled.img`
   zindex: 2;
   position: absolute;
-  height: 80vh;
+  height: 79vh;
   left: 0%;
   margin-top: 9.8%;
 `;
@@ -69,7 +69,7 @@ const Nexts = styled.button`
   padding: 5px;
 `;
 
-const Task = () => {
+const Task = ({ level, question, nextQuestion }) => {
   const navigate = useNavigate();
   const { speak, voices } = useSpeechSynthesis();
   const handleSpeak = () => {
@@ -132,7 +132,15 @@ const Task = () => {
         <Modal.Header closeButton>
           <Modal.Title>Task List</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <ol>
+            {level.map(task=>{
+              return <li>
+                {task.question}
+              </li>
+            })}
+          </ol>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

@@ -12,8 +12,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Ice from "./screens/icecream/Ice.js";
-import Fruits from "./screens/Fruits";
-import Grocery from "./screens/Grocery";
+import Level from "./screens/game/Levels";
 
 function App() {
   let routes = [
@@ -31,11 +30,11 @@ function App() {
     },
     {
       route: "/shop/fruits",
-      component: <Fruits />,
+      component: <Game />,
     },
     {
       route: "/shop/grocery",
-      component: <Grocery />,
+      component: <Game />,
     },
     {
       route: "/shop/icecream",
@@ -43,8 +42,11 @@ function App() {
     },
     {
       route: "/task",
-      component: <Task />,
-    }
+      component: <Task />,},
+    {
+      route: "/level",
+      component: <Level />,
+    },
   ];
   return (
     <div className="App">

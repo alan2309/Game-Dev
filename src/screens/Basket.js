@@ -5,22 +5,21 @@ import correctgif from "./images/correct.gif";
 import wronggif from "./images/wrong.gif";
 import { useNavigate } from "react-router-dom";
 
-function Basket({ correct }) {
+function Basket({ level, correct, question, nextQuestion }) {
   const [show, setShow] = useState(false);
   const [basket, setBasket] = useState([]);
   const [gif, setGif] = useState(correctgif);
   const [{ isOver }, dropRef] = useDrop({
     accept: "pet",
     drop: (item) => {
-      console.log(item, correct);
-      if (item.id === correct.id) {
+      if (item.id === correct) {
         setGif(correctgif);
       } else {
         setGif(wronggif);
       }
       setShow(true);
       setBasket((basket) =>
-        !basket.includes(item) && item.id === correct.id
+        !basket.includes(item) && item.id === correct
           ? [...basket, item]
           : basket
       );
@@ -110,7 +109,16 @@ function Basket({ correct }) {
           <div className="d-flex justify-content-center">
             <Button
               onClick={() => {
-                gif === correctgif ? navigate("/shop") : setShow(false);
+                if (gif === correctgif) {
+                  if (level.length === question + 1) {
+                    navigate("/end");
+                  } else {
+                    nextQuestion();
+                    navigate("/shop");
+                  }
+                } else {
+                  setShow(false);
+                }
               }}
             >
               {gif === correctgif ? "Next Task" : "Try Again"}{" "}

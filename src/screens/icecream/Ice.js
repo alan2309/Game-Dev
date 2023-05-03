@@ -2,8 +2,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import Basket from "../Basket";
 import boy from "../game/boy.png";
-import iceback from "../images/iceBack.png";
-import iceback2 from "../images/iceBack2.png";
+import iceback from "../images/iceBack3.png";
 import iceMan from "../images/iceMan.png";
 import choco from "../images/chocolate.png";
 import vanilla from "../images/vanilla.png";
@@ -12,7 +11,7 @@ import strawberry from "../images/strawberry.png";
 
 import { useDrag } from "react-dnd";
 
-function Ice() {
+function Ice({ level, question, nextQuestion }) {
   const list = [
     { id: 1, name: "strawberry icecream", item: strawberry },
     { id: 2, name: "chocolate icecream", item: choco },
@@ -53,12 +52,12 @@ function Ice() {
       <img
         className=""
         style={{
-          height: "90vh",
-          width: "70vw",
+          height: "100vh",
+          width: "100vw",
           position: "absolute",
-          bottom: "5vh",
+          bottom: "2vh",
           zIndex: "-100",
-          left: "8vw",
+          left: "-14vw",
         }}
         src={iceback}
         alt="back"
@@ -68,9 +67,10 @@ function Ice() {
           height: "100vh",
           width: "100vw",
           position: "absolute",
+          bottom:"2vh",
           zIndex: "-101",
         }}
-        src={iceback2}
+        src={iceback}
         alt="back"
       ></img>
       <img
@@ -109,7 +109,9 @@ function Ice() {
           padding: "20px",
         }}
       >
-        <p style={{ fontSize: "24px" }}>question</p>
+        <p style={{ fontSize: "24px" }}>
+        Ayoo kiddo!! {`Choose ${level[question].question} from the market`}
+          </p>
       </div>
       <div
         style={{
@@ -137,7 +139,10 @@ function Ice() {
           })}
         </Row>
       </div>
-      <Basket correct={list[2]} />
+      <Basket level={level}
+        correct={level[question].ans}
+        question={question}
+        nextQuestion={nextQuestion}  />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import strawberry from './images/strawbery.png'
 
 import { useDrag } from "react-dnd";
 
-function Fruits() {
+function Fruits({ level, question, nextQuestion }) {
   const list = [
     { id: 1, name: "Apples", item: apple },
     { id: 2, name: "Bananas", item: banana },
@@ -108,7 +108,7 @@ function Fruits() {
           padding: "20px",
         }}
       >
-        <p style={{ fontSize: "24px" }}>question</p>
+        <p style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</p>
       </div>
       <div
         style={{
@@ -136,7 +136,10 @@ function Fruits() {
           })}
         </Row>
       </div>
-      <Basket correct={list[2]} />
+      <Basket level={level}
+        correct={level[question].ans}
+        question={question}
+        nextQuestion={nextQuestion} />
     </div>
   );
 }

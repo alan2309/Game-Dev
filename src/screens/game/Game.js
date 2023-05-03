@@ -11,7 +11,8 @@ import potato from "./potato.png";
 import vendor from "./vendor.png";
 import { useSpeechSynthesis } from "react-speech-kit";
 import { useDrag } from "react-dnd";
-function Game() {
+
+function Game({ level, question, nextQuestion }) {
   const { speak, voices } = useSpeechSynthesis();
   const handleSpeak = () => {
     speak({
@@ -114,8 +115,9 @@ function Game() {
           border: "1px solid black",
           padding: "20px",
         }}
-      onClick={handleSpeak}>
-        <p style={{ fontSize: "24px" }}>Ayoo kiddo!! What do you wanna buy?</p>
+        onClick={handleSpeak}
+      >
+        <p style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</p>
       </div>
 
       <div
@@ -145,7 +147,12 @@ function Game() {
         </Row>
       </div>
 
-      <Basket correct={list[2]} />
+      <Basket
+        level={level}
+        correct={level[question].ans}
+        question={question}
+        nextQuestion={nextQuestion}
+      />
     </div>
   );
 }

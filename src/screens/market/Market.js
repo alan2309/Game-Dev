@@ -6,19 +6,28 @@ import grocery from "./grocery.png";
 import ice from "./icecream.png";
 import fruits from "./fruits.png";
 import { Row, Col } from "react-bootstrap";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
-function Market() {
+
+function Market({ level, question }) {
   const { speak, voices } = useSpeechSynthesis();
   const handleSpeak = () => {
     speak({
-      text: ` First in the list is 1kg ladyfinger! Where will you go?`,
+      text: `You have to buy ${level[question].question}! Where will you go?`,
       voice: voices[90],
     });
     console.log(voices);
   };
 
   const navigate = useNavigate();
+
+  const goShop = (id) => {
+    if (level[question].shop === id) {
+      navigate(`/shop/${id}`);
+    } else {
+      alert("wrong");
+    }
+  };
   const ShopCard = ({ img, name }) => {
     return (
       <div className="mb-4" style={{ backgroundColor: "White" }}>
@@ -70,11 +79,16 @@ function Market() {
           right: "25%",
           border: "1px solid black",
           padding: "20px",
-        }} onClick={handleSpeak}
+        }}
+        onClick={handleSpeak}
       >
-        <p style={{ fontSize: "22px" }}>
-          First in the list is 1kg ladyfinger! Where will you go?
-        </p>
+        {level[parseInt(question)] !== undefined && (
+          <p style={{ fontSize: "22px" }}>
+            {`You have to buy ${
+              level[parseInt(question)].question
+            }! Where will you go?`}
+          </p>
+        )}
       </div>
       <div
         style={{
@@ -87,16 +101,16 @@ function Market() {
         }}
       >
         <Row>
-          <Col md={6} onClick={()=>navigate('/shop/veggie')}>
+          <Col md={6} onClick={() => goShop(0)}>
             <ShopCard img={veg} name="vegetable" />
           </Col>
-          <Col md={6} onClick={()=>navigate('/shop/fruits')}>
+          <Col md={6} onClick={() => goShop(1)}>
             <ShopCard img={fruits} name="fruit" />
           </Col>
-          <Col md={6} onClick={()=>navigate('/shop/grocery')}>
+          <Col md={6} onClick={() => goShop(2)}>
             <ShopCard img={grocery} name="grocery" />
           </Col>
-          <Col md={6} onClick={()=>navigate('/shop/icecream')}>
+          <Col md={6} onClick={() => goShop(3)}>
             <ShopCard img={ice} name="ice cream" />
           </Col>
         </Row>

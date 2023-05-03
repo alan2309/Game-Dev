@@ -1,33 +1,56 @@
 import React, { useState } from "react";
-import { useDrop, useDrag } from 'react-dnd';
+import { useDrop, useDrag } from "react-dnd";
+import { Modal, Button } from "react-bootstrap";
+import correctgif from "./images/correct.gif";
+import wronggif from "./images/wrong.gif";
+import { useNavigate } from "react-router-dom";
 
-function Basket() {
-  const [basket, setBasket] = useState([])
+function Basket({ correct }) {
+  const [show, setShow] = useState(false);
+  const [basket, setBasket] = useState([]);
+  const [gif, setGif] = useState(correctgif);
   const [{ isOver }, dropRef] = useDrop({
-    accept: 'pet',
-    drop: (item) => setBasket((basket) =>
-      !basket.includes(item) && item.id === 2 ? [...basket, item] : basket),
+    accept: "pet",
+    drop: (item) => {
+      console.log(item, correct);
+      if (item.id === correct.id) {
+        setGif(correctgif);
+      } else {
+        setGif(wronggif);
+      }
+      setShow(true);
+      setBasket((basket) =>
+        !basket.includes(item) && item.id === correct.id
+          ? [...basket, item]
+          : basket
+      );
+    },
     collect: (monitor) => ({
-      isOver: monitor.isOver()
-    })
-  })
+      isOver: monitor.isOver(),
+    }),
+  });
+
+  const navigate = useNavigate();
+
   const ShopCard = ({ img, name, id }) => {
     const [{ isDragging }, dragRef] = useDrag({
-      type: 'pet',
+      type: "pet",
       item: { id, name },
       collect: (monitor) => ({
-        isDragging: monitor.isDragging()
-      })
-    })
+        isDragging: monitor.isDragging(),
+      }),
+    });
     return (
-
-      <div className="mb-4 mx-1" style={{ backgroundColor: "White" }} ref={dragRef}>
+      <div
+        className="mb-4 mx-1"
+        style={{ backgroundColor: "White" }}
+        ref={dragRef}
+      >
         {console.log(isDragging)}
         <img
           style={{ height: "20vh", width: "18.5vw" }}
           src={img}
           alt="shop"
-
         ></img>
         <div
           className="d-flex justify-content-center"
@@ -39,7 +62,8 @@ function Basket() {
     );
   };
   return (
-    <div ref={dropRef}
+    <div
+      ref={dropRef}
       style={{
         height: "80vh",
         backgroundColor: "white",
@@ -49,27 +73,51 @@ function Basket() {
         right: "10px",
         borderRadius: "10px",
       }}
-
     >
       <div
         style={{
           borderRadius: "10px",
           backgroundColor: "#eeeeee",
           borderBottom: "5px solid #cccccc",
-
         }}
       >
-
         <h3 className="d-flex justify-content-center pt-2">Basket</h3>
-        <div>
-          {basket.map(pet => <ShopCard id={pet.id} name={pet.name} img={pet.img} />)}
-          {isOver && <div>Drop Here!</div>}
-        </div>
       </div>
-
-      <button style={{ position: "absolute", bottom: "30px", right: "35%" }}>
-        submit
-      </button>
+      <div>
+        {basket.map((pet, index) => (
+          <ShopCard key={index} id={pet.id} name={pet.name} img={pet.img} />
+        ))}
+        {isOver && <div>Drop Here!</div>}
+      </div>
+      {!basket.length && (
+        <div
+          style={{ height: "70vh" }}
+          className="d-flex align-items-center justify-content-center"
+        >
+          Drop Item to buy
+        </div>
+      )}
+      <Modal show={show} centered>
+        <Modal.Body>
+          <div className="d-flex justify-content-center">
+            <img
+              style={{ height: "50vh", width: "30vw" }}
+              src={gif}
+              alt="answer"
+            />
+          </div>
+          <br />
+          <div className="d-flex justify-content-center">
+            <Button
+              onClick={() => {
+                gif === correctgif ? navigate("/shop") : setShow(false);
+              }}
+            >
+              {gif === correctgif ? "Next Task" : "Try Again"}{" "}
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

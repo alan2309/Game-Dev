@@ -6,9 +6,10 @@ import grocery from "./grocery.png";
 import ice from "./icecream.png";
 import fruits from "./fruits.png";
 import { Row, Col } from "react-bootstrap";
-import Basket from "../Basket";
+import {useNavigate} from 'react-router-dom'
 
 function Market() {
+  const navigate = useNavigate();
   const ShopCard = ({ img, name }) => {
     return (
       <div className="mb-4" style={{ backgroundColor: "White" }}>
@@ -77,21 +78,20 @@ function Market() {
         }}
       >
         <Row>
-          <Col md={6}>
+          <Col md={6} onClick={()=>navigate('/shop/veggie')}>
             <ShopCard img={veg} name="vegetable" />
           </Col>
-          <Col md={6}>
+          <Col md={6} onClick={()=>navigate('/shop/fruits')}>
             <ShopCard img={fruits} name="fruit" />
           </Col>
-          <Col md={6}>
+          <Col md={6} onClick={()=>navigate('/shop/grocery')}>
             <ShopCard img={grocery} name="grocery" />
           </Col>
-          <Col md={6}>
+          <Col md={6} onClick={()=>navigate('/shop/icecream')}>
             <ShopCard img={ice} name="ice cream" />
           </Col>
         </Row>
       </div>
-      <Basket />
     </div>
   );
 }

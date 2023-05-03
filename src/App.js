@@ -1,5 +1,5 @@
 import Game from "./screens/game/Game";
-
+import Task from "./screens/game/Task";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Market from "./screens/market/Market";
@@ -39,6 +39,10 @@ function App() {
       route: "/shop/icecream",
       component: <Ice />,
     },
+    {
+      route: "/task",
+      component: <Task />,
+    }
   ];
   return (
     <div className="App">

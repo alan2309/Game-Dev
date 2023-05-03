@@ -9,9 +9,17 @@ import back2 from "./image3.png";
 import back from "./image5.png";
 import potato from "./potato.png";
 import vendor from "./vendor.png";
-
+import { useSpeechSynthesis } from "react-speech-kit";
 import { useDrag } from "react-dnd";
 function Game() {
+  const { speak, voices } = useSpeechSynthesis();
+  const handleSpeak = () => {
+    speak({
+      text: ` Ayoo kiddo!! What do you wanna buy?`,
+      voice: voices[90],
+    });
+    console.log(voices);
+  };
   const list = [
     { id: 1, name: "cauliflower", item: cauli },
     { id: 2, name: "lady finger", item: finger },
@@ -106,7 +114,7 @@ function Game() {
           border: "1px solid black",
           padding: "20px",
         }}
-      >
+      onClick={handleSpeak}>
         <p style={{ fontSize: "24px" }}>Ayoo kiddo!! What do you wanna buy?</p>
       </div>
 

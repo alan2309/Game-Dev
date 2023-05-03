@@ -10,7 +10,7 @@ import Duck from "../Fluffing-a-Duck.mp3";
 import Bg from "./image 1.png";
 import Aunt from "./image 2.png";
 import Boy from "./image_2-removebg-preview 1.svg";
-
+import { Modal, Button } from "react-bootstrap";
 const BackgroundImg = styled.img`
   height: 100vh;
   width: 100vw;
@@ -32,7 +32,7 @@ const MomImg = styled.img`
 const Diag = styled.div`
   position: absolute;
   width: 60%;
-  height: 193.44px;
+  height: 20%;
   left: 22%;
   top: 64.78px;
   border: 1px solid white;
@@ -69,38 +69,18 @@ const Nexts = styled.button`
   padding: 5px;
 `;
 
-const Start = () => {
+const Task = () => {
   const navigate = useNavigate();
   const { speak, voices } = useSpeechSynthesis();
   const handleSpeak = () => {
     speak({
-      text: `Hey Kid!!!, here’s a list of groceries. Please bring all these items from the market.`,
-      voice: voices[89],
+      text: `Okay!....I will bring the groceries!!!`,
+      voice: voices[154],
     });
     console.log(voices);
   };
 
-  //   handleSongLoading,
-  //   handleSongPlaying,
-  //   handleSongFinishedPlaying
-  // ) => {
-  //   const [isPlaying, setIsPlaying] = useState(false);
-  //   return (
-  //     <>
-  //       <button onClick={() => setIsPlaying(!isPlaying)}>
-  //         {!isPlaying ? "Play" : "Stop"}
-  //       </button>
-  //       <Sound
-  //         url={Duck}
-  //         playStatus={isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED}
-  //         onLoading={handleSongLoading}
-  //         onPlaying={handleSongPlaying}
-  //         onFinishedPlaying={handleSongFinishedPlaying}
-  //       />
-  //       ;
-  //     </>
-  //   );
-  // };
+  
   const MyButton=()=>{
     const [isPlaying, setIsPlaying] = useState(false);
     const [playSound,{ stop }] = useSound(Duck)
@@ -128,27 +108,45 @@ const Start = () => {
       </button>
     )
   }
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <Container>
         
-    {/* <PlaySound /> */}
+    
       <BackgroundImg src={Bg} />
       <MyButton />
       <Diag>
         <Desc>
-          Hi Abhay, here’s a list of groceries. Please bring all these items
-          from the market.
+          Okay!....I will bring the groceries!!!
         </Desc>
-        <Nexts onClick={()=>navigate('/task')}>
+        <Nexts onClick={handleShow}>
           <Arrows>
             <NavigateNextIcon />
           </Arrows>
         </Nexts>
       </Diag>
-      <MomImg src={Aunt} onClick={handleSpeak} />
-      <BoyImg src={Boy} />
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Task List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={()=>navigate('/shop')}>
+            Go to Market
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    
+      <MomImg src={Aunt}  />
+      <BoyImg src={Boy} onClick={handleSpeak} />
     </Container>
   );
 };
 
-export default Start;
+export default Task;

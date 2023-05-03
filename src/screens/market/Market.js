@@ -7,8 +7,17 @@ import ice from "./icecream.png";
 import fruits from "./fruits.png";
 import { Row, Col } from "react-bootstrap";
 import {useNavigate} from 'react-router-dom'
-
+import { useSpeechSynthesis } from "react-speech-kit";
 function Market() {
+  const { speak, voices } = useSpeechSynthesis();
+  const handleSpeak = () => {
+    speak({
+      text: ` First in the list is 1kg ladyfinger! Where will you go?`,
+      voice: voices[90],
+    });
+    console.log(voices);
+  };
+
   const navigate = useNavigate();
   const ShopCard = ({ img, name }) => {
     return (
@@ -61,7 +70,7 @@ function Market() {
           right: "25%",
           border: "1px solid black",
           padding: "20px",
-        }}
+        }} onClick={handleSpeak}
       >
         <p style={{ fontSize: "22px" }}>
           First in the list is 1kg ladyfinger! Where will you go?

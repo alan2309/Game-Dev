@@ -9,10 +9,18 @@ import apple from './images/apple.png'
 import mango from './images/mango.png'
 import banana from './images/banana.png'
 import strawberry from './images/strawbery.png'
-
+import { useSpeechSynthesis } from "react-speech-kit";
 import { useDrag } from "react-dnd";
 
 function Fruits({ level, question, nextQuestion }) {
+  const { speak, voices } = useSpeechSynthesis();
+  const handleSpeak = () => {
+    speak({
+      text: `Ayoo kiddo!! Choose ${level[question].question} from the market`,
+      voice: voices[90],
+    });
+    console.log(voices);
+  };
   const list = [
     { id: 1, name: "Apples", item: apple },
     { id: 2, name: "Bananas", item: banana },
@@ -104,11 +112,12 @@ function Fruits({ level, question, nextQuestion }) {
           position: "absolute",
           top: "29px",
           right: "30%",
-          border: "1px solid black",
+          border: "1px solid white",
           padding: "20px",
         }}
+        onClick={handleSpeak}
       >
-        <p style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</p>
+        <h1 style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</h1>
       </div>
       <div
         style={{

@@ -6,6 +6,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Market from "./screens/market/Market";
 import Start from "./screens/game/Start";
 import { Row, Col } from "react-bootstrap";
+import Rewards from "./screens/Rewards";
 import {
   // Navigate,
   Route,
@@ -101,6 +102,10 @@ function App() {
     {
       route: "/end",
       component: <Final />,
+    },
+    {
+      route: "/wheel",
+      component: <Rewards />,
     },
   ];
   return (

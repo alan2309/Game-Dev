@@ -8,10 +8,18 @@ import choco from "../images/chocolate.png";
 import vanilla from "../images/vanilla.png";
 import mint from "../images/mint.png";
 import strawberry from "../images/strawberry.png";
-
+import { useSpeechSynthesis } from "react-speech-kit";
 import { useDrag } from "react-dnd";
 
 function Ice({ level, question, nextQuestion }) {
+  const { speak, voices } = useSpeechSynthesis();
+  const handleSpeak = () => {
+    speak({
+      text: `Ayoo kiddo!! Choose ${level[question].question} from the market`,
+      voice: voices[90],
+    });
+    console.log(voices);
+  };
   const list = [
     { id: 1, name: "strawberry icecream", item: strawberry },
     { id: 2, name: "chocolate icecream", item: choco },
@@ -105,13 +113,14 @@ function Ice({ level, question, nextQuestion }) {
           position: "absolute",
           top: "50px",
           right: "30%",
-          border: "1px solid black",
+          border: "1px solid white",
           padding: "20px",
         }}
+        onClick={handleSpeak}
       >
-        <p style={{ fontSize: "24px" }}>
+        <h1 style={{ fontSize: "24px" }}>
         Ayoo kiddo!! {`Choose ${level[question].question} from the market`}
-          </p>
+          </h1>
       </div>
       <div
         style={{

@@ -115,7 +115,7 @@ const Levels = ({ setLevel }) => {
       <BackgroundImg src={Bg} />
 
       <Navbar>
-        <h2 style={{ color: "white", fontFamily: "fantasy" }}>
+        <h2 style={{ color: "white", fontFamily: "fantasy",textAlign:"center" }}>
           Market Adventure
         </h2>
       </Navbar>

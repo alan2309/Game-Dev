@@ -101,17 +101,17 @@ function Market({ level, question }) {
           position: "absolute",
           top: "65px",
           right: "25%",
-          border: "1px solid black",
+          border: "1px solid white",
           padding: "20px",
         }}
         onClick={handleSpeak}
       >
         {level[parseInt(question)] !== undefined && (
-          <p style={{ fontSize: "22px" }}>
+          <h1 style={{ fontSize: "22px" }}>
             {`You have to buy ${
               level[parseInt(question)].question
             }! Where will you go?`}
-          </p>
+          </h1>
         )}
       </div>
       <div

@@ -17,6 +17,7 @@ function Final() {
         src={congrats}
         alt="congrats"
       />
+      
       <Button
         style={{
           position: "absolute",
@@ -25,10 +26,11 @@ function Final() {
           fontSize: "30px",
         }}
         variant="success"
-        onClick={() => navigate("/level")}
+        onClick={() => navigate("/wheel")}
       >
-        Back to Levels
+        Claim your Prize
       </Button>
+      
     </div>
   );
 }

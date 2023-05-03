@@ -14,9 +14,9 @@ import { useDrag } from "react-dnd";
 
 function Game({ level, question, nextQuestion }) {
   const { speak, voices } = useSpeechSynthesis();
-  const handleSpeak = () => {
+ const handleSpeak = () => {
     speak({
-      text: ` Ayoo kiddo!! What do you wanna buy?`,
+      text: `Ayoo kiddo!! Choose ${level[question].question} from the market`,
       voice: voices[90],
     });
     console.log(voices);
@@ -112,12 +112,12 @@ function Game({ level, question, nextQuestion }) {
           position: "absolute",
           top: "75px",
           right: "30%",
-          border: "1px solid black",
+          border: "1px solid white",
           padding: "20px",
         }}
         onClick={handleSpeak}
       >
-        <p style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</p>
+        <h1 style={{ fontSize: "24px" }}>Ayoo kiddo!! {`Choose ${level[question].question} from the market`}</h1>
       </div>
 
       <div

@@ -70,15 +70,35 @@ const Nexts = styled.button`
 `;
 
 const Task = ({ level, question, nextQuestion }) => {
+  const Dialogues=[
+    "Hey",
+    "Hey Kid",
+    "Do you need any help?",
+    "Yes, it would be a great idea if you help me with buying groceries",
+    "Sure!!",
+    "Great!Here's the list of things you could buy",
+    "Click next to see the list"
+
+  ]
+  const [value, setValue] = useState(0)
   const navigate = useNavigate();
   const { speak, voices } = useSpeechSynthesis();
   const handleSpeak = () => {
     speak({
-      text: `Okay!....I will bring the groceries!!!`,
-      voice: voices[154],
+      text: Dialogues[value],
+      voice: voices[2],
     });
+    setValue(value+1);
+  };
+  const handleSpeakBoy= () => {
+    speak({
+      text: Dialogues[value],
+      voice: voices[12],//159//1
+    });
+    setValue(value+1);
     console.log(voices);
   };
+  
 
   
   const MyButton=()=>{
@@ -120,7 +140,9 @@ const Task = ({ level, question, nextQuestion }) => {
       <MyButton />
       <Diag>
         <Desc>
-          Okay!....I will bring the groceries!!!
+         
+ {Dialogues[value]}
+
         </Desc>
         <Nexts onClick={handleShow}>
           <Arrows>
@@ -145,14 +167,14 @@ const Task = ({ level, question, nextQuestion }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={()=>navigate('/shop')}>
+          <Button variant="success" onClick={()=>navigate('/shop')}>
             Go to Market
           </Button>
         </Modal.Footer>
       </Modal>
     
-      <MomImg src={Aunt}  />
-      <BoyImg src={Boy} onClick={handleSpeak} />
+      <MomImg src={Aunt}  onClick={handleSpeak}/>
+      <BoyImg src={Boy} onClick={handleSpeakBoy} />
     </Container>
   );
 };

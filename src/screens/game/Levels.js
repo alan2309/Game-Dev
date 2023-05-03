@@ -78,7 +78,7 @@ const Level3 = styled.img`
 const Levels = ({ setLevel }) => {
   const goToLevel = (lvl) => {
     setLevel(lvl);
-    navigate("/start");
+    navigate("/task");
   };
   const MyButton = () => {
     const [isPlaying, setIsPlaying] = useState(false);

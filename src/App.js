@@ -12,6 +12,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Ice from "./screens/icecream/Ice.js";
+import Level from "./screens/game/Levels";
 
 function App() {
   let routes = [
@@ -42,7 +43,11 @@ function App() {
     {
       route: "/task",
       component: <Task />,
-    }
+    },
+    {
+      route: "/level",
+      component: <Level />,
+    },
   ];
   return (
     <div className="App">

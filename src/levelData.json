@@ -1,0 +1,25 @@
+[
+    [{
+        "question":"1kg ladyfinger",
+        "ans":2,
+        "shop":0
+    },
+    {
+        "question":"1 dozen apples",
+        "ans":1,
+        "shop":1
+    },
+    {
+        "question":"1 pack chocolate icecream",
+        "ans":2,
+        "shop":3
+    },
+    {
+        "question":"1 dozen bananas",
+        "ans":2,
+        "shop":1
+    }],
+    [],
+    [],
+    []
+]

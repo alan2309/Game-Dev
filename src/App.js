@@ -21,7 +21,6 @@ import Grocery from "./screens/Grocery";
 import levelData from "./levelData.json";
 import Final from "./screens/Final";
 
-
 function App() {
   const [question, setQuestion] = useState(0);
   const [level, setLevel] = useState(0);
@@ -86,18 +85,23 @@ function App() {
     },
     {
       route: "/level",
-      component: <Level />,
+      component: <Level setLevel={setLevel} />,
     },
 
-      {
-        route:"/task",
-        component: <Task level={levelData[level]}
-      question={question}
-      nextQuestion={nextQuestion} />,},
     {
-      route:"/end",
-      component:<Final/>,
-    }
+      route: "/task",
+      component: (
+        <Task
+          level={levelData[level]}
+          question={question}
+          nextQuestion={nextQuestion}
+        />
+      ),
+    },
+    {
+      route: "/end",
+      component: <Final />,
+    },
   ];
   return (
     <div className="App">

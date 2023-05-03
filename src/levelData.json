@@ -1,5 +1,6 @@
 [
-    [{
+    [
+        {
         "question":"1kg ladyfinger",
         "ans":2,
         "shop":0
@@ -18,8 +19,80 @@
         "question":"1 dozen bananas",
         "ans":2,
         "shop":1
-    }],
-    [],
-    [],
-    []
+    }
+],
+    [
+        {
+        "question":"1 Piece Cauliflower",
+        "ans":1,
+        "shop":0
+    },
+    {
+        "question":"1 Kg Carrots",
+        "ans":4,
+        "shop":0
+    },
+    {
+        "question":"1 Pack Detergent Powder",
+        "ans":1,
+        "shop":2
+    },
+    {
+        "question":"1 Pack Strawberry Ice Cream",
+        "ans":4,
+        "shop":3
+    },
+    {
+        "question":"4 Packs of Milk",
+        "ans":2,
+        "shop":2
+    },
+    {
+        "question":"1 Pack of Tea",
+        "ans":4,
+        "shop":2
+    }
+],
+    [
+        {
+        "question":"2 Dozen Mangoes",
+        "ans":3,
+        "shop":1
+    },
+    {
+        "question":"1 Packet of snacks",
+        "ans":3,
+        "shop":2
+    },
+    {
+        "question":"1 Pack of Vanilla icecream",
+        "ans":4,
+        "shop":3
+    },
+    {
+        "question":"1 Kg Potato",
+        "ans":3,
+        "shop":0
+    },
+    {
+        "question":"100 grams Strawberries ",
+        "ans":4,
+        "shop":1
+    },
+    {
+        "question":"1 Packet Detergent",
+        "ans":1,
+        "shop":2
+    },
+    {
+        "question":"1 Kg ladyfinger",
+        "ans":2,
+        "shop":0
+    },
+    {
+        "question":"1 Pack of Mint Icecream",
+        "ans":3,
+        "shop":3
+    }
+]
 ]

@@ -75,7 +75,11 @@ const Level3 = styled.img`
   }
   cursor: pointer;
 `;
-const Levels = () => {
+const Levels = ({ setLevel }) => {
+  const goToLevel = (lvl) => {
+    setLevel(lvl);
+    navigate("/start");
+  };
   const MyButton = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [playSound, { stop }] = useSound(Duck);
@@ -117,9 +121,9 @@ const Levels = () => {
       </Navbar>
       <MyButton />
       <Wrapper>
-        <Level1 src={level1} onClick={() => navigate("/start")} />
-        <Level2 src={level2} onClick={() => navigate("/start")} />
-        <Level3 src={level3} onClick={() => navigate("/start")} />
+        <Level1 src={level1} onClick={() => goToLevel(0)} />
+        <Level2 src={level2} onClick={() => goToLevel(1)} />
+        <Level3 src={level3} onClick={() => goToLevel(2)} />
       </Wrapper>
     </Container>
   );

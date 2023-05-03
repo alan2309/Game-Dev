@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import back from "./back.png";
 import boy from "../game/boy.png";
 import veg from "./veg.png";
 import grocery from "./grocery.png";
 import ice from "./icecream.png";
 import fruits from "./fruits.png";
-import { Row, Col } from "react-bootstrap";
+import wronggif from "../images/wrong.gif";
+import { Row, Col,Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
+import { Modal } from "react-bootstrap";
 
 function Market({ level, question }) {
   const { speak, voices } = useSpeechSynthesis();
+  const[show,setShow] = useState(false);
   const handleSpeak = () => {
     speak({
       text: `You have to buy ${level[question].question}! Where will you go?`,
@@ -25,7 +28,7 @@ function Market({ level, question }) {
     if (level[question].shop === id) {
       navigate(`/shop/${id}`);
     } else {
-      alert("wrong");
+      setShow(true)
     }
   };
   const ShopCard = ({ img, name }) => {
@@ -47,6 +50,27 @@ function Market({ level, question }) {
   };
   return (
     <div>
+      <Modal show={show} centered>
+        <Modal.Body>
+          <div className="d-flex justify-content-center">
+            <img
+              style={{ height: "50vh", width: "30vw" }}
+              src={wronggif}
+              alt="answer"
+            />
+          </div>
+          <br />
+          <div className="d-flex justify-content-center">
+            <Button
+              onClick={() => {
+                setShow(false);
+              }}
+            >
+              Try Again
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
       <img
         style={{
           height: "100vh",

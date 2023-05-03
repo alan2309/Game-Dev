@@ -12,6 +12,8 @@ import {
   Routes,
 } from "react-router-dom";
 import Ice from "./screens/icecream/Ice.js";
+import Fruits from "./screens/Fruits";
+import Grocery from "./screens/Grocery";
 
 function App() {
   let routes = [
@@ -29,11 +31,11 @@ function App() {
     },
     {
       route: "/shop/fruits",
-      component: <Game />,
+      component: <Fruits />,
     },
     {
       route: "/shop/grocery",
-      component: <Game />,
+      component: <Grocery />,
     },
     {
       route: "/shop/icecream",

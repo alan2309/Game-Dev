@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import MusicOffIcon from "@mui/icons-material/MusicOff";
 import styled from "styled-components";
@@ -75,7 +75,11 @@ const Level3 = styled.img`
   }
   cursor: pointer;
 `;
-const Levels = ({ setLevel }) => {
+const Levels = ({ setLevel,reset }) => {
+
+  useEffect(()=>{
+    reset();
+  },[])
   const goToLevel = (lvl) => {
     setLevel(lvl);
     navigate("/task");

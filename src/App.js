@@ -26,6 +26,12 @@ function App() {
   const [question, setQuestion] = useState(0);
   const [level, setLevel] = useState(0);
 
+
+  const reset = ()=>{
+    setQuestion(0);
+    setLevel(0);
+  }
+
   const nextQuestion = () => {
     setQuestion(question + 1);
   };
@@ -86,7 +92,7 @@ function App() {
     },
     {
       route: "/level",
-      component: <Level setLevel={setLevel} />,
+      component: <Level reset={reset} setLevel={setLevel} />,
     },
 
     {
